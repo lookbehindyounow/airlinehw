@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,7 +25,7 @@ public class FlightTest {
         crewMember3=new CabinCrewMember("Dev", Rank.FLIGHT_ATTENDANT);
         crewMember4=new CabinCrewMember("Mev", Rank.FLIGHT_ATTENDANT);
         plane=new Plane(PlaneType.BOEING);
-        flight=new Flight(new Person[]{crewMember1,crewMember2,crewMember3,crewMember4},plane,"1","Spain","Newcastle","early in the morning");
+        flight=new Flight(new CabinCrewMember[]{crewMember1,crewMember2,crewMember3,crewMember4},plane,"1","Spain","Newcastle",new Date(1,1,1));
         passenger1=new Passenger("Stev",1);
         passenger2=new Passenger("Gev",2);
     }
@@ -59,7 +60,7 @@ public class FlightTest {
         assertEquals(0,flight.availableSeats());
 
         boolean isBooked=flight.book(passenger2);
-//        assertEquals(false,isBooked);
+        assertEquals(false,isBooked);
         assertEquals(false,flight.getPassengers().contains(passenger2));
     }
 }

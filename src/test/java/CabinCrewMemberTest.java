@@ -2,6 +2,8 @@ import org.example.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 public class CabinCrewMemberTest {
@@ -14,7 +16,7 @@ public class CabinCrewMemberTest {
         cabinCrewMember=new CabinCrewMember("Dev", Rank.FLIGHT_ATTENDANT);
         pilot=new Pilot("Kev","I can fly real good trust me");
         plane=new Plane(PlaneType.BOEING7474747);
-        flight=new Flight(new Person[]{pilot,cabinCrewMember},plane,"2","a better place","airport","just a while ago");
+        flight=new Flight(new CabinCrewMember[]{pilot,cabinCrewMember},plane,"2","a better place","airport", new Date(1,1,1));
     }
     @Test
     public void hasAttributes(){

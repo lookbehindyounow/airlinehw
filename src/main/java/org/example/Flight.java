@@ -1,7 +1,6 @@
 package org.example;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Date;
 
 public class Flight {
     private Pilot pilot;
@@ -11,29 +10,12 @@ public class Flight {
     private String flightNumber;
     private String destination;
     private String origin;
-    private String departureTime;
+    private Date departureTime;
 
-    public Flight(Person[] _onBoard, Plane _plane, String _flightNumber, String _destination, String _origin, String _departureTime) {
-        // this mess is the result of a refusal to let java tell me how to do things
-        int crewSize=0;
-        for (Person person:_onBoard){
-            if (person instanceof CabinCrewMember){
-                crewSize++;
-            }
-        }
-        this.crew=new CabinCrewMember[crewSize];
-        int i=0;
+    public Flight(CabinCrewMember[] _crew, Plane _plane, String _flightNumber, String _destination, String _origin, Date _departureTime) {
+        this.pilot=(Pilot)_crew[0];
+        this.crew=_crew;
         this.passengers=new ArrayList<>();
-        for (Person person:_onBoard){
-            if (person instanceof CabinCrewMember){
-                System.out.println();
-                this.crew[i]=(CabinCrewMember)person;
-                i++;
-            } else{
-                this.passengers.add((Passenger)person);
-            }
-        }
-        this.pilot=(Pilot)_onBoard[0];
         this.plane = _plane;
         this.flightNumber = _flightNumber;
         this.destination = _destination;
@@ -69,7 +51,7 @@ public class Flight {
         return origin;
     }
 
-    public String getDepartureTime() {
+    public Date getDepartureTime() {
         return departureTime;
     }
 
